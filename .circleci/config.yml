@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run: mvn clean install # Compila y ejecuta los tests
       - run: mvn jacoco:report # Genera el informe de cobertura
+      - run: mvn checkstyle:check # Ejecuta el linting de la aplicación
 
 workflows:
   version: 2
