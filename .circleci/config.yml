@@ -5,10 +5,19 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0
     steps:
+      # Restaurar la caché de las dependencias de Maven
+      - restore_cache:
+          keys:
+            - v1-maven-{{ checksum "pom.xml" }}
       - checkout
       - run: mvn clean install # Compila y ejecuta los tests
       - run: mvn jacoco:report # Genera el informe de cobertura
       - run: mvn checkstyle:check # Ejecuta el linting de la aplicación
+      # Guardar la caché de las dependencias de Maven para futuras ejecuciones
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-maven-{{ checksum "pom.xml" }}
 
 workflows:
   version: 2
