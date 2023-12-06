@@ -8,7 +8,7 @@ jobs:
       # Restaurar la caché de las dependencias de Maven
       - restore_cache:
           keys:
-            - v1-maven-{{ checksum "pom.xml" }}
+            - v1-maven-{{ checksum "D:/SampleJavaProjectCiCd/pom.xml" }}
               # fallback to using the latest cache if no exact match is found
             - v1-maven-
 
@@ -21,7 +21,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2/repository
-          key: v1-maven-{{ checksum "pom.xml" }}
+          key: v1-maven-{{ checksum "D:/SampleJavaProjectCiCd/pom.xml" }}
 
 workflows:
   version: 2
