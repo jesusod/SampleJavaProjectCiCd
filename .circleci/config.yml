@@ -9,6 +9,7 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0
     steps:
+      - checkout
       # Restaurar la caché de las dependencias de Maven
       - restore_cache:
           keys:
@@ -16,7 +17,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-maven-
 
-      - checkout
       - run: mvn clean install # Compila y ejecuta los tests
       - run: mvn jacoco:report # Genera el informe de cobertura
       - run: mvn checkstyle:check # Ejecuta el linting de la aplicación
