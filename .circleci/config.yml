@@ -20,19 +20,13 @@ jobs:
       - run: mvn clean install # Compila y ejecuta los tests
       - run: mvn jacoco:report # Genera el informe de cobertura
       - run: mvn checkstyle:check # Ejecuta el linting de la aplicación
+      - sonarcloud/scan
 
       # Guardar la caché de las dependencias de Maven para futuras ejecuciones
       - save_cache:
           paths:
             - ~/.m2/repository
           key: v1-maven-{{ checksum "pom.xml" }}
-
-      # Análisis estático de código con SonarCloud utilizando la orb
-      - sonarcloud/scan:
-          organization: jesusod
-          project-key: jesusod_SampleJavaProjectCiCd
-          token:
-            secure: $SONARCLOUD_TOKEN
 
 workflows:
   version: 2
