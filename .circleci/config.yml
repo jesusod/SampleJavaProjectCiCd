@@ -12,7 +12,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-maven-{{ checksum "pom.xml" }}
-              # fallback to using the latest cache if no exact match is found
+            # fallback to using the latest cache if no exact match is found
             - v1-maven-
 
       - checkout
@@ -25,13 +25,13 @@ jobs:
           paths:
             - ~/.m2/repository
           key: v1-maven-{{ checksum "pom.xml" }}
-            
-            # Análisis estático de código con SonarCloud utilizando la orb
-                 - sonarcloud/scan:
-                 organization: jesusod
-                 project-key: jesusod_SampleJavaProjectCiCd
-                 token:
-                   secure: $SONARCLOUD_TOKEN
+
+      # Análisis estático de código con SonarCloud utilizando la orb
+      - sonarcloud/scan:
+          organization: jesusod
+          project-key: jesusod_SampleJavaProjectCiCd
+          token:
+            secure: $SONARCLOUD_TOKEN
 
 workflows:
   version: 2
