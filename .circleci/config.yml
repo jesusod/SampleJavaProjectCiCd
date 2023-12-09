@@ -23,7 +23,7 @@ jobs:
       - sonarcloud/scan
       - run: mvn package -B && ls -l
       - store_artifacts:
-          path: ./target/*.jar
+          path: ./target/SampleJavaProject-1.0-SNAPSHOT
 
 
       # Guardar la caché de las dependencias de Maven para futuras ejecuciones
