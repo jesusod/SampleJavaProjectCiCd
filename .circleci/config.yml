@@ -23,7 +23,7 @@ jobs:
       - sonarcloud/scan
       - run: mvn package -B && ls -l
       - store_artifacts:
-          path: /home/circleci/project
+          path: ./target/*.jar
 
 
       # Guardar la caché de las dependencias de Maven para futuras ejecuciones
