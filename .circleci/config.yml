@@ -21,9 +21,9 @@ jobs:
       - run: mvn jacoco:report # Genera el informe de cobertura
       - run: mvn checkstyle:check # Ejecuta el linting de la aplicación
       - sonarcloud/scan
-      - run: mvn package -B && ls -l
+      - run: mvn package -B && ls target
       - store_artifacts:
-          path: ./target/SampleJavaProject-1.0-SNAPSHOT
+          path: ./target/SampleJavaProject-1.0-SNAPSHOT.jar
 
 
       # Guardar la caché de las dependencias de Maven para futuras ejecuciones
